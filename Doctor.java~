@@ -1,0 +1,85 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+public class DoctorApp {
+    public static void main(String[] args) {
+
+        JFrame f = new JFrame("Doctor Appointment");
+        f.setSize(350, 350);
+        f.setLayout(null);
+
+        JLabel l1 = new JLabel("Name:");
+        l1.setBounds(20, 20, 80, 25);
+        f.add(l1);
+
+        JTextField t1 = new JTextField();
+        t1.setBounds(100, 20, 150, 25);
+        f.add(t1);
+
+        JLabel l2 = new JLabel("Gender:");
+        l2.setBounds(20, 60, 80, 25);
+        f.add(l2);
+
+        JRadioButton r1 = new JRadioButton("Male");
+        JRadioButton r2 = new JRadioButton("Female");
+        r1.setBounds(100, 60, 70, 25);
+        r2.setBounds(170, 60, 80, 25);
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(r1);
+        bg.add(r2);
+
+        f.add(r1);
+        f.add(r2);
+
+        JLabel l3 = new JLabel("Doctor:");
+        l3.setBounds(20, 100, 80, 25);
+        f.add(l3);
+
+        String d[] = {"Dr A", "Dr B", "Dr C"};
+        JList list = new JList(d);
+        list.setBounds(100, 100, 100, 50);
+        f.add(list);
+
+        JLabel l4 = new JLabel("Symptoms:");
+        l4.setBounds(20, 170, 80, 25);
+        f.add(l4);
+
+        JCheckBox c1 = new JCheckBox("Fever");
+        JCheckBox c2 = new JCheckBox("Cold");
+        c1.setBounds(100, 170, 80, 25);
+        c2.setBounds(180, 170, 80, 25);
+
+        f.add(c1);
+        f.add(c2);
+
+        JButton b = new JButton("Submit");
+        b.setBounds(100, 220, 100, 30);
+        f.add(b);
+
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String name = t1.getText();
+
+                String gender = "";
+                if (r1.isSelected()) gender = "Male";
+                else if (r2.isSelected()) gender = "Female";
+
+                String doctor = (String) list.getSelectedValue();
+
+                String symptoms = "";
+                if (c1.isSelected()) symptoms += "Fever ";
+                if (c2.isSelected()) symptoms += "Cold ";
+
+                JOptionPane.showMessageDialog(f,
+                        "Name: " + name +
+                        "\nGender: " + gender +
+                        "\nDoctor: " + doctor +
+                        "\nSymptoms: " + symptoms);
+            }
+        });
+
+        f.setVisible(true);
+    }
+}
